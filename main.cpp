@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include "backendobject.h"
-
+#include "controller.h"
 
 static QObject *backend_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
-
-    qmlRegisterSingletonType<BackendObject>("elmsoft.rail.backendObject", 1, 0, "BackedObject", backend_provider);
+    qmlRegisterType<Controller>("elmsoft.rail.backendObject", 1, 0, "Controller");
+    qmlRegisterSingletonType<BackendObject>("elmsoft.rail.backendObject", 1, 0, "BackendObject", backend_provider);
 
     QQmlApplicationEngine engine;
 
