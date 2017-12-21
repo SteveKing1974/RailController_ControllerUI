@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>ControllerItem.qml</file>
+        <file>SignalDiagram.qml</file>
+        <file>ControlPanel.qml</file>
     </qresource>
 </RCC>

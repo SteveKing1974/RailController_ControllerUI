@@ -9,58 +9,38 @@ ApplicationWindow {
     height: 480
     title: qsTr("Hello World")
 
-
-    ControllerItem {
-        id: outer
-        anchors.top: parent.top
+    Item {
+        anchors.top: parent.top;
         anchors.left: parent.left
-        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.bottom: selectSwitch.top
 
-        controllerName: "Outer Loop"
+        SignalDiagram
+        {
+            visible: !selectSwitch.checked
+            anchors.fill: parent
+        }
 
-        width: 250
-
-        myController: BackendObject.getController(BackendObject.OUTER_LOOP)
+        ControlPanel {
+            visible: selectSwitch.checked
+            anchors.fill: parent
+        }
     }
 
-    ControllerItem {
-        id: inner
 
-        anchors.top: parent.top
-        anchors.left: outer.right
+
+    Switch {
+        id: selectSwitch
+
+        height: 50
         anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.left: parent.left
 
-        controllerName: "Inner Loop"
 
-        width: 250
+        text: qsTr("Controllers")
 
-        myController: BackendObject.getController(BackendObject.INNER_LOOP)
+        checked: false
     }
-
-    ControllerItem {
-        id: stationOuter
-        anchors.top: parent.top
-        anchors.left: inner.right
-        anchors.bottom: parent.bottom
-
-        controllerName: "Station Outer"
-
-        width: 250
-
-        myController: BackendObject.getController(BackendObject.STATION_OUTER)
-    }
-
-    ControllerItem {
-        id: stationInner
-        anchors.top: parent.top
-        anchors.left: stationOuter.right
-        anchors.bottom: parent.bottom
-
-        controllerName: "Station Inner"
-
-        width: 250
-
-        myController: BackendObject.getController(BackendObject.STATION_INNER)
-    }
-
 }
+
