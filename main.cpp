@@ -3,6 +3,7 @@
 
 #include "backendobject.h"
 #include "controller.h"
+#include "jsonkeys.h"
 
 static QObject *backend_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
@@ -18,9 +19,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
-    qDebug() << "Hello";
-
     qmlRegisterType<Controller>("elmsoft.rail.backendObject", 1, 0, "Controller");
+    qmlRegisterUncreatableType<JsonKeys>("elmsoft.rail.backendObject", 1, 0, "JsonKeys", QLatin1String("Cannot create"));
     qmlRegisterSingletonType<BackendObject>("elmsoft.rail.backendObject", 1, 0, "BackendObject", backend_provider);
 
     QQmlApplicationEngine engine;

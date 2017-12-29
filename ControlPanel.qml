@@ -14,46 +14,46 @@ Item {
 
         width: 250
 
-        myController: BackendObject.getController(BackendObject.OUTER_LOOP)
+        myController: BackendObject.getController(BackendObject.getKeys().outerLoop())
     }
 
-//    ControllerItem {
-//        id: inner
+    ControllerItem {
+        id: inner
 
-//        anchors.top: parent.top
-//        anchors.left: outer.right
-//        anchors.bottom: parent.bottom
+        anchors.top: parent.top
+        anchors.left: outer.right
+        anchors.bottom: parent.bottom
 
-//        controllerName: "Inner Loop"
+        controllerName: "Inner Loop"
 
-//        width: 250
+        width: 250
 
-//        myController: BackendObject.getController(BackendObject.INNER_LOOP)
-//    }
+        myController: BackendObject.getController(BackendObject.getKeys().innerLoop())
+    }
 
-//    ControllerItem {
-//        id: stationOuter
-//        anchors.top: parent.top
-//        anchors.left: inner.right
-//        anchors.bottom: parent.bottom
+    ControllerItem {
+        id: stationOuter
+        anchors.top: parent.top
+        anchors.left: inner.right
+        anchors.bottom: parent.bottom
 
-//        controllerName: "Station Outer"
+        controllerName: "Station Outer"
 
-//        width: 250
+        width: 250
 
-//        myController: BackendObject.getController(BackendObject.STATION_OUTER)
-//    }
+        myController: BackendObject.getController(BackendObject.getKeys().stationOuter())
+    }
 
-//    ControllerItem {
-//        id: stationInner
-//        anchors.top: parent.top
-//        anchors.left: stationOuter.right
-//        anchors.bottom: parent.bottom
+    ControllerItem {
+        id: stationInner
+        anchors.top: parent.top
+        anchors.left: stationOuter.right
+        anchors.bottom: parent.bottom
 
-//        controllerName: "Station Inner"
+        controllerName: "Station Inner"
 
-//        width: 250
+        width: 250
 
-//        myController: BackendObject.getController(BackendObject.STATION_INNER)
-//    }
+        myController: BackendObject.getController(BackendObject.getKeys().stationInner())
+    }
 }

@@ -85,6 +85,8 @@ Item {
             text: checked ? qsTr("Forward") : qsTr("Backward")
 
             checked: myController.direction === Controller.CONTROLLER_FORWARD
+
+            onCheckedChanged: myController.direction = checked ? Controller.CONTROLLER_FORWARD : Controller.CONTROLLER_BACKWARD
         }
 
         Slider {

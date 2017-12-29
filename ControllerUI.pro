@@ -7,7 +7,8 @@ INCLUDEPATH += ../Common
 SOURCES += main.cpp \
     backendobject.cpp \
     controller.cpp \
-    ../Common/clientsocket.cpp
+    ../Common/clientsocket.cpp \
+    ../Common/basecontroller.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,4 +35,5 @@ HEADERS += \
     backendobject.h \
     controller.h \
     ../Common/clientsocket.h \
-    ../Common/jsonkeys.h
+    ../Common/jsonkeys.h \
+    ../Common/basecontroller.h

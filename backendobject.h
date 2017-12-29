@@ -3,43 +3,38 @@
 
 #include <QObject>
 #include <QHash>
+#include <QSignalMapper>
 
 #include "controller.h"
 #include "clientsocket.h"
+#include "jsonkeys.h"
 
 class BackendObject : public QObject
 {
     Q_OBJECT
 
-//    Q_ENUMS(ControllerID)
-
 public:
     explicit BackendObject(QObject *parent = 0);
 
-    enum ControllerID {
-        OUTER_LOOP,
-        INNER_LOOP,
-        STATION_OUTER,
-        STATION_INNER
-    } ;
-
-    Q_INVOKABLE Controller* getController(ControllerID id) const;
+    Q_INVOKABLE Controller* getController(const QString& key) const;
+    Q_INVOKABLE JsonKeys* getKeys() const;
 
 public slots:
     void refreshControllers();
-
-protected:
-    void timerEvent(QTimerEvent *);
+    void refreshPanel();
 
 private slots:
     void gotData(const QByteArray& data);
+    void controllerChanged(const QString& id);
 
 private:
     void updateControllers(const QJsonObject& obj);
     void updatePanel(const QJsonObject& obj);
+    void mapController(const QString& id);
 
-    QHash<ControllerID, Controller*> m_Controllers;
+    QHash<QString, Controller*> m_Controllers;
     ClientSocket* m_pSock;
+    QSignalMapper* m_pMap;
 };
 
 #endif // BACKENDOBJECT_H

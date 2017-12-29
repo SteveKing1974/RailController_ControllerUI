@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import elmsoft.rail.backendObject 1.0
 
 
 Item
@@ -8,6 +9,8 @@ Item
     width: 100
     x: 200
     y: 200
+
+    onVisibleChanged: if (visible) BackendObject.refreshPanel()
 
     Canvas
     {
@@ -21,6 +24,17 @@ Item
             ctx.bezierCurveTo(startX + width/2, startY, startX + width/2, startY+height, startX + width, startY+height);
             ctx.stroke();
         }
+
+        function drawBreak(ctx, startX, startY, radius)
+        {
+            ctx.beginPath();
+            ctx.arc(startX, startY+10, 10, 3*Math.PI/2.0, 11*Math.PI/6, false);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(startX+20, startY-10, 10, Math.PI/2, 5*Math.PI/6, false);
+            ctx.stroke();
+        }
+
 
         onPaint:
         {
@@ -56,8 +70,14 @@ Item
 
             // Station outer line
             ctx.strokeStyle = "blue"
+
+            drawBreak(ctx, drawingCanvas.width  - rightMargin*4 - 150, drawingCanvas.height - bottomMargin - 2*trackGap)
+
             ctx.beginPath()
             ctx.moveTo(leftMargin*8, drawingCanvas.height - bottomMargin - 2*trackGap)
+            ctx.lineTo(drawingCanvas.width  - rightMargin*4 - 150, drawingCanvas.height - bottomMargin - 2*trackGap)
+
+            ctx.moveTo(drawingCanvas.width  - rightMargin*4 - 130, drawingCanvas.height - bottomMargin - 2*trackGap)
             ctx.lineTo(drawingCanvas.width  - rightMargin*4 + 50, drawingCanvas.height - bottomMargin - 2*trackGap)
             ctx.stroke()
 
@@ -66,8 +86,13 @@ Item
 
             // Station inner line
             ctx.strokeStyle = "purple"
+
+            drawBreak(ctx, drawingCanvas.width - rightMargin*15 - 100, drawingCanvas.height - bottomMargin - 3*trackGap)
+
             ctx.beginPath()
             ctx.moveTo(leftMargin*2, drawingCanvas.height - bottomMargin - 3*trackGap)
+            ctx.lineTo(drawingCanvas.width - rightMargin*15 - 100, drawingCanvas.height - bottomMargin - 3*trackGap)
+            ctx.moveTo(drawingCanvas.width - rightMargin*15 - 80, drawingCanvas.height - bottomMargin - 3*trackGap)
             ctx.lineTo(drawingCanvas.width - rightMargin*15, drawingCanvas.height - bottomMargin - 3*trackGap)
             ctx.stroke()
 
@@ -75,11 +100,13 @@ Item
             drawPoints(ctx, leftMargin*15, drawingCanvas.height - bottomMargin - 3*trackGap - 5, -100, -1*(trackGap-10))
             drawPoints(ctx, leftMargin*10, drawingCanvas.height - bottomMargin - 4*trackGap , -100, -1*(trackGap-10))
 
+            drawBreak(ctx, leftMargin*10 - 120, drawingCanvas.height - bottomMargin - 5*trackGap + 10)
+
             ctx.beginPath()
             ctx.moveTo(leftMargin*2, drawingCanvas.height - bottomMargin - 4*trackGap + 5)
             ctx.lineTo(leftMargin*15 - 100, drawingCanvas.height - bottomMargin - 4*trackGap + 5)
             ctx.moveTo(leftMargin*2, drawingCanvas.height - bottomMargin - 5*trackGap + 10)
-            ctx.lineTo(leftMargin*10 - 100, drawingCanvas.height - bottomMargin - 5*trackGap + 10)
+            ctx.lineTo(leftMargin*10 - 120, drawingCanvas.height - bottomMargin - 5*trackGap + 10)
             ctx.stroke()
 
             // Sidings on the right
@@ -87,10 +114,13 @@ Item
             drawPoints(ctx, drawingCanvas.width - rightMargin*14, drawingCanvas.height - bottomMargin - 2*trackGap - 5, 100, -1*(trackGap-10))
             drawPoints(ctx, drawingCanvas.width - rightMargin*9, drawingCanvas.height - bottomMargin - 3*trackGap, 100, -1*(trackGap-10))
 
+            drawBreak(ctx, drawingCanvas.width - rightMargin*4, drawingCanvas.height - bottomMargin - 4*trackGap + 10)
+
             ctx.beginPath()
             ctx.moveTo(drawingCanvas.width - rightMargin*9, drawingCanvas.height - bottomMargin - 3*trackGap + 5)
             ctx.lineTo(drawingCanvas.width - rightMargin*4 + 50, drawingCanvas.height - bottomMargin - 3*trackGap + 5)
-            ctx.moveTo(drawingCanvas.width - rightMargin*4, drawingCanvas.height - bottomMargin - 4*trackGap + 10)
+
+            ctx.moveTo(drawingCanvas.width - rightMargin*4 + 20, drawingCanvas.height - bottomMargin - 4*trackGap + 10)
             ctx.lineTo(drawingCanvas.width - rightMargin*4 + 50, drawingCanvas.height - bottomMargin - 4*trackGap + 10)
             ctx.stroke()
         }

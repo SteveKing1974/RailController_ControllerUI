@@ -10,6 +10,10 @@ ApplicationWindow {
     title: qsTr("Hello World")
 
     Item {
+        id: panelItem
+
+        visible: false
+
         anchors.top: parent.top;
         anchors.left: parent.left
         anchors.right: parent.right
@@ -42,5 +46,7 @@ ApplicationWindow {
 
         checked: false
     }
+
+    Component.onCompleted: panelItem.visible = true
 }
 
