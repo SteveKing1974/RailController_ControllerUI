@@ -5,21 +5,36 @@ import elmsoft.rail.backendObject 1.0
 
 ApplicationWindow {
     visible: true
-    width: 1000
-    height: 480
+    width: 1200
+    height: 680
     title: qsTr("Hello World")
+
+    Switch {
+        id: selectSwitch
+
+        height: 50
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.left: parent.left
+
+
+        text: qsTr("Controllers")
+
+        checked: false
+    }
+
 
     Item {
         id: panelItem
 
         visible: false
 
-        anchors.top: parent.top;
+        anchors.top: selectSwitch.bottom;
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.bottom: selectSwitch.top
+        anchors.bottom: parent.bottom
 
-        SignalDiagram
+        SignalPanel
         {
             visible: !selectSwitch.checked
             anchors.fill: parent
@@ -29,22 +44,6 @@ ApplicationWindow {
             visible: selectSwitch.checked
             anchors.fill: parent
         }
-    }
-
-
-
-    Switch {
-        id: selectSwitch
-
-        height: 50
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.left: parent.left
-
-
-        text: qsTr("Controllers")
-
-        checked: false
     }
 
     Component.onCompleted: panelItem.visible = true

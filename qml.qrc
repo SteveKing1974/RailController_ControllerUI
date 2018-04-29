@@ -5,5 +5,40 @@
         <file>ControllerItem.qml</file>
         <file>SignalDiagram.qml</file>
         <file>ControlPanel.qml</file>
+        <file>SignalPanel.qml</file>
+        <file>SignalLever.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>resources/png/blueindicator.png</file>
+        <file>resources/png/downmaincrossoverlever_off.png</file>
+        <file>resources/png/downmaincrossoverlever_on.png</file>
+        <file>resources/png/downsiding1lever_off.png</file>
+        <file>resources/png/downsiding1lever_on.png</file>
+        <file>resources/png/downsiding2lever_off.png</file>
+        <file>resources/png/downsiding2lever_on.png</file>
+        <file>resources/png/downsidinglowerlever_off.png</file>
+        <file>resources/png/downsidinglowerlever_on.png</file>
+        <file>resources/png/downsidingupperlever_off.png</file>
+        <file>resources/png/downsidingupperlever_on.png</file>
+        <file>resources/png/downstationcrossoverlever_off.png</file>
+        <file>resources/png/downstationcrossoverlever_on.png</file>
+        <file>resources/png/greenindicator.png</file>
+        <file>resources/png/greyindicator.png</file>
+        <file>resources/png/redindicator.png</file>
+        <file>resources/png/stationentrancelever_off.png</file>
+        <file>resources/png/stationentrancelever_on.png</file>
+        <file>resources/png/stationsidinglever_off.png</file>
+        <file>resources/png/stationsidinglever_on.png</file>
+        <file>resources/png/upmaincrossoverlever_off.png</file>
+        <file>resources/png/upmaincrossoverlever_on.png</file>
+        <file>resources/png/upsiding1lever_off.png</file>
+        <file>resources/png/upsiding1lever_on.png</file>
+        <file>resources/png/upsiding2lever_off.png</file>
+        <file>resources/png/upsiding2lever_on.png</file>
+        <file>resources/png/upsidinglever_off.png</file>
+        <file>resources/png/upsidinglever_on.png</file>
+        <file>resources/png/upstationcrossoverlever_off.png</file>
+        <file>resources/png/upstationcrossoverlever_on.png</file>
+        <file>resources/png/yellowindicator.png</file>
     </qresource>
 </RCC>

@@ -8,7 +8,9 @@ SOURCES += main.cpp \
     backendobject.cpp \
     controller.cpp \
     ../Common/clientsocket.cpp \
-    ../Common/basecontroller.cpp
+    ../Common/basecontroller.cpp \
+    lever.cpp \
+    node.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,4 +38,6 @@ HEADERS += \
     controller.h \
     ../Common/clientsocket.h \
     ../Common/jsonkeys.h \
-    ../Common/basecontroller.h
+    ../Common/basecontroller.h \
+    lever.h \
+    node.h

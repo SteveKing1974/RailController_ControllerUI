@@ -5,10 +5,6 @@ import elmsoft.rail.backendObject 1.0
 Item
 {
     id: mainContainer
-    height: 100
-    width: 100
-    x: 200
-    y: 200
 
     onVisibleChanged: if (visible) BackendObject.refreshPanel()
 
@@ -41,7 +37,7 @@ Item
             var ctx = getContext("2d")
 
             var trackGap = 50
-            var bottomMargin = 70
+            var bottomMargin = 10
             var leftMargin = 20
             var rightMargin = 20
 
