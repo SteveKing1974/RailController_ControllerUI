@@ -23,44 +23,44 @@ Item {
 
         spacing: 6
 
-        Image {
-            source: 'images/resources/png/upmaincrossoverlever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().upMainCrossover();
         }
-        Image {
-            source: 'images/resources/png/downmaincrossoverlever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().downMainCrossover();
         }
-        Image {
-            source: 'images/resources/png/stationentrancelever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().stationEntranceCrossover();
         }
-        Image {
-            source: 'images/resources/png/downstationcrossoverlever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().downStationCrossover();
         }
-        Image {
-            source: 'images/resources/png/upstationcrossoverlever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().upStationCrossover();
         }
-        Image {
-            source: 'images/resources/png/upsiding1lever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().upSiding1();
         }
-        Image {
-            source: 'images/resources/png/upsiding2lever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().upSiding2();
         }
-        Image {
-            source: 'images/resources/png/downsiding1lever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().downSiding1();
         }
-        Image {
-            source: 'images/resources/png/downsiding2lever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().downSiding2();
         }
-        Image {
-            source: 'images/resources/png/upsidinglever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().topSidingUp();
         }
-        Image {
-            source: 'images/resources/png/stationsidinglever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().stationSidingDown();
         }
-        Image {
-            source: 'images/resources/png/downsidinglowerlever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().bottomSidingDown();
         }
-        Image {
-            source: 'images/resources/png/downsidingupperlever_off.png'
+        SignalLever {
+            leverId: BackendObject.getKeys().topSidingDown();
         }
     }
 }
