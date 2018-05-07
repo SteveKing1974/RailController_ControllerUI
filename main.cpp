@@ -3,6 +3,7 @@
 
 #include "backendobject.h"
 #include "controller.h"
+#include "lever.h"
 #include "jsonkeys.h"
 
 static QObject *backend_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<Controller>("elmsoft.rail.backendObject", 1, 0, "Controller");
+    qmlRegisterType<Lever>("elmsoft.rail.backendObject", 1, 0, "Lever");
     qmlRegisterUncreatableType<JsonKeys>("elmsoft.rail.backendObject", 1, 0, "JsonKeys", QLatin1String("Cannot create"));
     qmlRegisterSingletonType<BackendObject>("elmsoft.rail.backendObject", 1, 0, "BackendObject", backend_provider);
 

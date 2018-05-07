@@ -169,6 +169,7 @@ void BackendObject::updateControllers(const QJsonObject &obj)
 {
     if (!obj.isEmpty())
     {
+        m_pControllerMap->blockSignals(true);
         const QStringList keys = obj.keys();
         foreach (const QString& k, keys)
         {
@@ -177,6 +178,7 @@ void BackendObject::updateControllers(const QJsonObject &obj)
                 qDebug() << "Update" << k << m_Controllers.value(k)->fromJson(obj.value(k).toObject());
             }
         }
+        m_pControllerMap->blockSignals(false);
     }
 }
 
@@ -184,11 +186,28 @@ void BackendObject::updatePanel(const QJsonObject &obj)
 {
     if (!obj.isEmpty())
     {
-        qDebug() << "-> updatePanel" << obj.keys();
-        QJsonObject iso = obj.value(JsonKeys::nodes()).toObject();
-        qDebug() << "-> " << iso.keys();
-        //QJsonObject iso1 = iso.value(iso.keys().at(0));
-        qDebug() << "-> " << iso.value(iso.keys().at(17));
+        const QJsonObject isol = obj.value(JsonKeys::isolators()).toObject();
+        const QJsonObject points = obj.value(JsonKeys::points()).toObject();
+
+        foreach (const QString& l, m_Levers.keys())
+        {
+            if (isol.contains(l))
+            {
+                m_Levers.value(l)->update(true, isol.value(l).toObject().value(JsonKeys::enabled()));
+            }
+            if (points.contains(l))
+            {
+                QJsonObject tmp = points.value(l).toObject();
+
+                m_Levers.value(l)->update(tmp.value(JsonKeys::enabled()), tmp.value(JsonKeys::direction()));
+            }
+        }
+
+//        qDebug() << "-> updatePanel" << obj.keys();
+//        QJsonObject iso = obj.value(JsonKeys::points()).toObject();
+//        qDebug() << "-> " << iso.keys();
+//        qDebug() <<  iso.value("downmaincrossover").toObject().keys();
+//        qDebug() << "-> " << iso.value("downmaincrossover").toObject().value(JsonKeys::enabled()).toBool();
     }
 }
 
@@ -207,8 +226,7 @@ void BackendObject::mapController(const QString &id)
 void BackendObject::mapLever(const QString &id)
 {
     Lever* pLever = new Lever(this);
-    connect(pLever, SIGNAL(enabledChanged()), m_pLeverMap, SLOT(map()));
-    connect(pLever, SIGNAL(pulledChanged()), m_pLeverMap, SLOT(map()));
+    connect(pLever, SIGNAL(leverPulled()), m_pLeverMap, SLOT(map()));
 
     m_pLeverMap->setMapping(pLever, id);
 

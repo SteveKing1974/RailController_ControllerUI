@@ -2,6 +2,7 @@
 #define LEVER_H
 
 #include <QObject>
+#include <QJsonValue>
 
 class Lever : public QObject
 {
@@ -13,13 +14,22 @@ class Lever : public QObject
 public:
     explicit Lever(QObject *parent = nullptr);
 
+    void update(const QJsonValue& enabledValue, const QJsonValue& pulledValue);
+
     bool enabled() const;
     bool pulled() const;
+
+public slots:
+    void toggle();
+
 signals:
     void enabledChanged();
     void pulledChanged();
+    void leverPulled();
 
-public slots:
+private:
+    bool m_Enabled;
+    bool m_Pulled;
 };
 
 #endif // LEVER_H
