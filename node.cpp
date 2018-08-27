@@ -1,31 +1,30 @@
 #include "node.h"
 
 #include <QHash>
+#include <jsonkeys.h>
 
-static QHash<int, QColor> g_ColorTable;
-Node::Node(QObject *parent) : QObject(parent)
+static QHash<QString, QColor> g_ColorTable;
+Node::Node(QObject *parent) : QObject(parent), m_NodeController(QString())
 {
     if (g_ColorTable.isEmpty())
     {
-        g_ColorTable[0] = Qt::black;
-        g_ColorTable[1] = Qt::blue;
-        g_ColorTable[2] = Qt::magenta;
-        g_ColorTable[3] = Qt::green;
-        g_ColorTable[4] = Qt::red;
+        g_ColorTable[JsonKeys::innerLoop()] = Qt::blue;
+        g_ColorTable[JsonKeys::outerLoop()] = Qt::magenta;
+        g_ColorTable[JsonKeys::stationInner()] = Qt::green;
+        g_ColorTable[JsonKeys::stationOuter()] = Qt::red;
     }
 }
 
-void Node::setControllerIndex(int idx)
+void Node::setController(const QString& newVal)
 {
-
-    if (idx != m_Index)
+    if (newVal != m_NodeController)
     {
-        m_Index = idx;
+        m_NodeController = newVal;
         emit nodeColorChanged();
     }
 }
 
 QColor Node::nodeColor() const
 {
-    return g_ColorTable.value(m_Index, Qt::black);
+    return g_ColorTable.value(m_NodeController, Qt::black);
 }

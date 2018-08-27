@@ -103,6 +103,7 @@ JsonKeys *BackendObject::getKeys() const
 void BackendObject::refreshControllers()
 {
     QJsonObject obj;
+
     obj.insert(JsonKeys::command(), JsonKeys::get());
     obj.insert(JsonKeys::data(), JsonKeys::controller());
     m_pSock->sendData((QJsonDocument(obj)).toJson());
@@ -126,6 +127,8 @@ void BackendObject::gotData(const QByteArray &data)
         qDebug() << "Got" << obj.keys();
         updateControllers(obj.value(JsonKeys::controller()).toObject());
         updatePanel(obj.value(JsonKeys::panel()).toObject());
+
+        emit panelChanged();
     }
     else
     {
@@ -202,6 +205,20 @@ void BackendObject::updatePanel(const QJsonObject &obj)
                 m_Levers.value(l)->update(tmp.value(JsonKeys::enabled()), tmp.value(JsonKeys::direction()));
             }
         }
+
+        const QJsonObject nodes = obj.value(JsonKeys::nodes()).toObject();
+        QStringList nds = m_Nodes.keys();
+        nds.sort();
+
+        foreach (const QString& n, nds) //m_Nodes.keys())
+        {
+            if (nodes.contains(n))
+            {
+                qDebug() << n << nodes.value(n).toString();
+                m_Nodes.value(n)->setController(nodes.value(n).toString());
+            }
+        }
+        //qDebug() << obj.value(JsonKeys::nodes()).toObject().keys();
 
 //        qDebug() << "-> updatePanel" << obj.keys();
 //        QJsonObject iso = obj.value(JsonKeys::points()).toObject();

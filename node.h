@@ -13,7 +13,7 @@ class Node : public QObject
 public:
     explicit Node(QObject *parent = nullptr);
 
-    void setControllerIndex(int idx);
+    void setController(const QString& newVal);
 
     QColor nodeColor() const;
 
@@ -21,7 +21,7 @@ signals:
     void nodeColorChanged();
 
 private:
-    int m_Index;
+    QString m_NodeController;
 };
 
 #endif // NODE_H

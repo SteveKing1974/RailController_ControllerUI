@@ -28,6 +28,9 @@ public slots:
     void refreshControllers();
     void refreshPanel();
 
+signals:
+    void panelChanged();
+
 private slots:
     void gotData(const QByteArray& data);
     void controllerChanged(const QString& id);
