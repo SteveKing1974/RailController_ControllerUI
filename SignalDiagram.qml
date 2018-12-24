@@ -76,9 +76,9 @@ Item
 
             // Inner line
             trackY = drawingCanvas.height - bottomMargin - trackGap;
-            drawLine(ctx, leftMargin, trackY, 100, trackY, BackendObject.getKeys().innerLeft());
-            drawLine(ctx, 100, trackY, drawingCanvas.width - rightMargin*12, trackY, BackendObject.getKeys().innerCenter());
-            drawLine(ctx, drawingCanvas.width - rightMargin*12, trackY, drawingCanvas.width - rightMargin, trackY, BackendObject.getKeys().innerRight());
+            drawLine(ctx, leftMargin, trackY, 200, trackY, BackendObject.getKeys().innerLeft());
+            drawLine(ctx, 200, trackY, drawingCanvas.width - rightMargin*11, trackY, BackendObject.getKeys().innerCenter());
+            drawLine(ctx, drawingCanvas.width - rightMargin*11, trackY, drawingCanvas.width - rightMargin, trackY, BackendObject.getKeys().innerRight());
 
             drawPoints(ctx, drawingCanvas.width - rightMargin*12, trackY - 5, -100, -1*(trackGap-10), BackendObject.getKeys().innerToStation())
 
