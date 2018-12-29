@@ -2,6 +2,7 @@
 
 #include <QHash>
 #include <jsonkeys.h>
+#include <QDebug>
 
 static QHash<QString, QColor> g_ColorTable;
 Node::Node(QObject *parent) : QObject(parent), m_NodeController(QString())

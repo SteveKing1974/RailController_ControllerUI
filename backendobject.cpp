@@ -54,10 +54,12 @@ BackendObject::BackendObject(QObject *parent) :
     mapNode(JsonKeys::stationOuterLeft());
     mapNode(JsonKeys::stationOuterCenter());
     mapNode(JsonKeys::stationSidingRight1());
+    mapNode(JsonKeys::stationSidingRight1Entrance());
     mapNode(JsonKeys::dummyRightBetweenSidings());
 
     mapNode(JsonKeys::stationSidingRight2());
     mapNode(JsonKeys::stationSidingRight3());
+    mapNode(JsonKeys::stationSidingRight3Entrance());
     mapNode(JsonKeys::stationOuterToInnerLeft());
     mapNode(JsonKeys::stationOuterToInnerRight());
 
@@ -69,6 +71,7 @@ BackendObject::BackendObject(QObject *parent) :
     mapNode(JsonKeys::dummyLeftBetweenSidings());
     mapNode(JsonKeys::stationSidingLeft2());
     mapNode(JsonKeys::stationSidingLeft3());
+    mapNode(JsonKeys::stationSidingLeft3Entrance());
 
     // Connect stuff
     connect(m_pControllerMap, SIGNAL(mapped(QString)), this, SLOT(controllerChanged(QString)));
