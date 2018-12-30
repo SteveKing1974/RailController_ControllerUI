@@ -18,16 +18,16 @@ Item
         ctxLocal.strokeStyle = oldStyle;
     }
 
-    function drawBreak(ctxLocal, startX, startY, nodeName)
+    function drawBreak(ctxLocal, startX, startY, leftNodeNode, rightNodeName)
     {
         var oldStyle = ctxLocal.strokeStyle
-        var breakColour = BackendObject.getNode(nodeName).nodeColor;
 
         ctxLocal.beginPath();
-        ctxLocal.strokeStyle = breakColour;
+        ctxLocal.strokeStyle = BackendObject.getNode(leftNodeNode).nodeColor;
         ctxLocal.arc(startX, startY+10, 10, 3*Math.PI/2.0, 11*Math.PI/6, false);
         ctxLocal.stroke();
         ctxLocal.beginPath();
+        ctxLocal.strokeStyle = BackendObject.getNode(rightNodeName).nodeColor;
         ctxLocal.arc(startX+20, startY-10, 10, Math.PI/2, 5*Math.PI/6, false);
         ctxLocal.stroke();
         ctxLocal.strokeStyle = oldStyle;
@@ -100,12 +100,12 @@ Item
 //            // Station outer line
             trackY = drawingCanvas.height - bottomMargin - 2*trackGap;
 
-            drawBreak(ctx, drawingCanvas.width  - rightMargin*4 - 150, trackY, BackendObject.getKeys().stationSidingRight1())
+            drawBreak(ctx, drawingCanvas.width  - rightMargin*4 - 150, trackY, BackendObject.getKeys().stationSidingRight1Entrance(), BackendObject.getKeys().stationSidingRight1())
 
             drawLine(ctx, leftMargin*8, trackY, leftMargin*12, trackY, BackendObject.getKeys().stationOuterLeft());
             drawLine(ctx, leftMargin*12, trackY, drawingCanvas.width - rightMargin*18, trackY, BackendObject.getKeys().stationOuterCenter());
             drawLine(ctx, drawingCanvas.width - rightMargin*18, trackY, drawingCanvas.width  - rightMargin*4 - 150, trackY, BackendObject.getKeys().stationOuterBetweenPoints());
-            drawLine(ctx, drawingCanvas.width  - rightMargin*4 - 130, trackY, drawingCanvas.width  - rightMargin*4 + 50, trackY, BackendObject.getKeys().stationSidingRight1Entrance());
+            drawLine(ctx, drawingCanvas.width  - rightMargin*4 - 130, trackY, drawingCanvas.width  - rightMargin*4 + 50, trackY, BackendObject.getKeys().stationSidingRight1());
 
             drawPoints(ctx, leftMargin*12, drawingCanvas.height - bottomMargin - 2*trackGap - 5, 100, -1*(trackGap-10), BackendObject.getKeys().stationOuterToInnerLeft())
             drawPoints(ctx, drawingCanvas.width - rightMargin*18, drawingCanvas.height - bottomMargin - 2*trackGap - 5, -100, -1*(trackGap-10), BackendObject.getKeys().stationOuterToInnerRight())
@@ -113,16 +113,16 @@ Item
             // Station inner line
             trackY = drawingCanvas.height - bottomMargin - 3*trackGap;
 
-            drawBreak(ctx, drawingCanvas.width - rightMargin*15 - 100, drawingCanvas.height - bottomMargin - 3*trackGap, BackendObject.getKeys().stationInnerRight())
+            drawBreak(ctx, drawingCanvas.width - rightMargin*15 - 100, drawingCanvas.height - bottomMargin - 3*trackGap, BackendObject.getKeys().stationInnerRight(), BackendObject.getKeys().stationInnerRightSiding())
             drawLine(ctx, leftMargin*2, trackY, leftMargin*15, trackY, BackendObject.getKeys().stationSidingLeft1());
             drawLine(ctx, leftMargin*15, trackY, drawingCanvas.width - rightMargin*15-100, trackY, BackendObject.getKeys().stationInnerCenter());
-            drawLine(ctx, drawingCanvas.width - rightMargin*15-80, trackY, drawingCanvas.width - rightMargin*15, trackY, BackendObject.getKeys().stationInnerRight());
+            drawLine(ctx, drawingCanvas.width - rightMargin*15-80, trackY, drawingCanvas.width - rightMargin*15, trackY, BackendObject.getKeys().stationInnerRightSiding());
 
             // Now the sidings left
             drawPoints(ctx, leftMargin*15, drawingCanvas.height - bottomMargin - 3*trackGap - 5, -100, -1*(trackGap-10), BackendObject.getKeys().dummyLeftBetweenSidings())
             drawPoints(ctx, leftMargin*10, drawingCanvas.height - bottomMargin - 4*trackGap , -100, -1*(trackGap-10), BackendObject.getKeys().stationSidingLeft3Entrance())
 
-            drawBreak(ctx, leftMargin*10 - 120, drawingCanvas.height - bottomMargin - 5*trackGap + 10, BackendObject.getKeys().stationSidingLeft3())
+            drawBreak(ctx, leftMargin*10 - 120, drawingCanvas.height - bottomMargin - 5*trackGap + 10, BackendObject.getKeys().stationSidingLeft3(), BackendObject.getKeys().stationSidingLeft3Entrance())
 
             drawLine(ctx, leftMargin*2, drawingCanvas.height - bottomMargin - 4*trackGap + 5,
                      leftMargin*15 - 100, drawingCanvas.height - bottomMargin - 4*trackGap + 5, BackendObject.getKeys().stationSidingLeft2());
@@ -134,7 +134,7 @@ Item
             drawPoints(ctx, drawingCanvas.width - rightMargin*14, drawingCanvas.height - bottomMargin - 2*trackGap - 5, 100, -1*(trackGap-10), BackendObject.getKeys().dummyRightBetweenSidings())
             drawPoints(ctx, drawingCanvas.width - rightMargin*9, drawingCanvas.height - bottomMargin - 3*trackGap, 100, -1*(trackGap-10), BackendObject.getKeys().stationSidingRight3Entrance())
 
-            drawBreak(ctx, drawingCanvas.width - rightMargin*4, drawingCanvas.height - bottomMargin - 4*trackGap + 10, BackendObject.getKeys().stationSidingRight3())
+            drawBreak(ctx, drawingCanvas.width - rightMargin*4, drawingCanvas.height - bottomMargin - 4*trackGap + 10, BackendObject.getKeys().stationSidingRight3Entrance(), BackendObject.getKeys().stationSidingRight3())
 
             drawLine(ctx, drawingCanvas.width - rightMargin*9, drawingCanvas.height - bottomMargin - 3*trackGap + 5,
                      drawingCanvas.width - rightMargin*4 + 50, drawingCanvas.height - bottomMargin - 3*trackGap + 5, BackendObject.getKeys().stationSidingRight2());

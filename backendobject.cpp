@@ -65,6 +65,7 @@ BackendObject::BackendObject(QObject *parent) :
 
     mapNode(JsonKeys::dummyStationInner());
     mapNode(JsonKeys::stationInnerRight());
+    mapNode(JsonKeys::stationInnerRightSiding());
     mapNode(JsonKeys::stationInnerCenter());
     mapNode(JsonKeys::dummyLeftBetweenPoints());
     mapNode(JsonKeys::stationSidingLeft1());
@@ -127,7 +128,7 @@ void BackendObject::gotData(const QByteArray &data)
 
     if (err.error == QJsonParseError::NoError )
     {
-        qDebug() << "Got" << obj.keys();
+        //qDebug() << "Got" << obj.keys();
         updateControllers(obj.value(JsonKeys::controller()).toObject());
         updatePanel(obj.value(JsonKeys::panel()).toObject());
 
@@ -181,7 +182,7 @@ void BackendObject::updateControllers(const QJsonObject &obj)
         {
             if (m_Controllers.contains(k))
             {
-                qDebug() << "Update" << k << m_Controllers.value(k)->fromJson(obj.value(k).toObject());
+                //qDebug() << "Update" << k << m_Controllers.value(k)->fromJson(obj.value(k).toObject());
             }
         }
         m_pControllerMap->blockSignals(false);
@@ -217,7 +218,7 @@ void BackendObject::updatePanel(const QJsonObject &obj)
         {
             if (nodes.contains(n))
             {
-                qDebug() << n << nodes.value(n).toString();
+                //qDebug() << n << nodes.value(n).toString();
                 m_Nodes.value(n)->setController(nodes.value(n).toString());
             }
         }
